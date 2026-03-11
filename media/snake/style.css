@@ -1,0 +1,135 @@
+﻿:root {
+  --snake-cell: 18px;
+  --snake-gap: 2px;
+  --snake-grid-bg: color-mix(in srgb, var(--vscode-editor-background) 92%, var(--vscode-editor-foreground));
+  --snake-snake: var(--vscode-charts-green, #2ea043);
+  --snake-food: var(--vscode-charts-red, #f85149);
+  --snake-border: var(--vscode-panel-border, rgba(127, 127, 127, 0.35));
+  --snake-muted: var(--vscode-descriptionForeground, rgba(127, 127, 127, 0.9));
+}
+
+body {
+  padding: 16px;
+  margin: 0;
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  color: var(--vscode-foreground);
+  background: var(--vscode-editor-background);
+}
+
+.wrap {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.topbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--snake-border);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.meta {
+  color: var(--snake-muted);
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--snake-w), var(--snake-cell));
+  grid-template-rows: repeat(var(--snake-h), var(--snake-cell));
+  gap: var(--snake-gap);
+  padding: 10px;
+  border: 1px solid var(--snake-border);
+  border-radius: 8px;
+  background: var(--snake-grid-bg);
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.cell {
+  width: var(--snake-cell);
+  height: var(--snake-cell);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--vscode-editor-background) 88%, var(--vscode-editor-foreground));
+}
+
+.cell.snake {
+  background: var(--snake-snake);
+}
+
+.cell.food {
+  background: var(--snake-food);
+}
+
+.status {
+  margin-top: 10px;
+  color: var(--snake-muted);
+}
+
+.controls {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+button {
+  appearance: none;
+  border: 1px solid var(--snake-border);
+  background: var(--vscode-button-secondaryBackground, transparent);
+  color: var(--vscode-button-secondaryForeground, var(--vscode-foreground));
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+button.primary {
+  background: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+  border-color: color-mix(in srgb, var(--vscode-button-background) 70%, black);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pad {
+  display: none;
+  gap: 8px;
+  align-items: center;
+}
+
+.pad .col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pad button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  font-weight: 700;
+}
+
+@media (max-width: 520px) {
+  :root {
+    --snake-cell: 16px;
+  }
+  .pad {
+    display: flex;
+  }
+}

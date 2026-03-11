@@ -1,0 +1,5 @@
+{
+  "name": "queen-bee-swarm",
+  "description": "A Queen Bee swarm package with one visible orchestrator, sixteen hidden worker agents, and a matching VS Code chat extension entrypoint.",
+  "version": "1.0.0"
+}

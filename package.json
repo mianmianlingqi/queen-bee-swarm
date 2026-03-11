@@ -1,120 +1,120 @@
-﻿{
-    "name":  "queen-bee-swarm",
-    "displayName":  "Queen Bee Swarm",
-    "description":  "A VS Code chat extension and packaging shell for the Queen Bee Swarm Copilot Agent assets.",
-    "version":  "1.0.0",
-    "publisher":  "mianmianlingqi",
-    "license":  "MIT",
-    "repository":  {
-                       "type":  "git",
-                       "url":  "https://github.com/mianmianlingqi/queen-bee-swarm.git"
-                   },
-    "homepage":  "https://github.com/mianmianlingqi/queen-bee-swarm",
-    "bugs":  {
-                 "url":  "https://github.com/mianmianlingqi/queen-bee-swarm/issues"
-             },
-    "engines":  {
-                    "vscode":  "^1.98.0"
-                },
-    "categories":  [
-                       "Other",
-                       "Chat"
-                   ],
-    "keywords":  [
-                     "copilot",
-                     "agent",
-                     "plugin",
-                     "swarm",
-                     "queen-bee"
-                 ],
-    "main":  "./dist/extension.js",
-    "contributes":  {
-                        "chatParticipants":  [
-                                                 {
-                                                     "id":  "queen-bee-swarm.queen-bee",
-                                                     "name":  "queen-bee",
-                                                     "fullName":  "Queen Bee",
-                                                     "description":  "Ask about the swarm extension, agent assets, release readiness, or Snake",
-                                                     "isSticky":  true,
-                                                     "commands":  [
-                                                                      {
-                                                                          "name":  "overview",
-                                                                          "description":  "Summarize the extension and its public capabilities"
-                                                                      },
-                                                                      {
-                                                                          "name":  "agents",
-                                                                          "description":  "Inspect the Queen Bee and worker agent assets"
-                                                                      },
-                                                                      {
-                                                                          "name":  "snake",
-                                                                          "description":  "Explain or launch the built-in Snake webview"
-                                                                      },
-                                                                      {
-                                                                          "name":  "release",
-                                                                          "description":  "Review release metadata and publishing readiness"
-                                                                      }
-                                                                  ],
-                                                     "disambiguation":  [
-                                                                            {
-                                                                                "category":  "swarm_extension",
-                                                                                "description":  "The user wants help understanding or improving the Queen Bee Swarm VS Code extension, including its chat entrypoint, packaged agents, commands, release metadata, or built-in Snake webview.",
-                                                                                "examples":  [
-                                                                                                 "Explain how the Queen Bee extension is structured",
-                                                                                                 "What is still missing before this swarm extension can be published",
-                                                                                                 "Review the agent assets and tell me whether only the queen is visible",
-                                                                                                 "Open the Snake feature and explain its implementation"
-                                                                                             ]
-                                                                            }
-                                                                        ]
-                                                 }
-                                             ],
-                        "commands":  [
-                                         {
-                                             "command":  "queenBeeSwarm.showOverview",
-                                             "title":  "Queen Bee Swarm: Show Overview",
-                                             "category":  "Queen Bee Swarm"
-                                         },
-                                         {
-                                             "command":  "queenBeeSwarm.openReadme",
-                                             "title":  "Queen Bee Swarm: Open README",
-                                             "category":  "Queen Bee Swarm"
-                                         },
-                                         {
-                                             "command":  "queenBeeSwarm.revealAgentsFolder",
-                                             "title":  "Queen Bee Swarm: Reveal Agents Folder",
-                                             "category":  "Queen Bee Swarm"
-                                         },
-                                         {
-                                             "command":  "queenBeeSwarm.playSnake",
-                                             "title":  "Queen Bee Swarm: Play Snake",
-                                             "category":  "Queen Bee Swarm"
-                                         }
-                                     ]
-                    },
-    "scripts":  {
-                    "compile":  "tsc -p ./",
-                    "watch":  "tsc -watch -p ./",
-                    "vscode:prepublish":  "npm run compile",
-                    "package":  "vsce package",
-                    "test":  "node --test tests/*.test.js"
-                },
-    "files":  [
-                  "dist/**",
-                  "media/**",
-                  "agents/**",
-                  ".github/plugin/plugin.json",
-                  "plugin.json",
-                  "README.md",
-                  "CHANGELOG.md",
-                  "LICENSE"
-              ],
-    "devDependencies":  {
-                            "@types/node":  "^22.13.14",
-                            "@types/vscode":  "^1.98.0",
-                            "@vscode/vsce":  "^3.6.2",
-                            "typescript":  "^5.8.2"
-                        },
-    "activationEvents":  [
-                             "onChatParticipant:queen-bee-swarm.queen-bee"
-                         ]
+{
+  "name": "queen-bee-swarm",
+  "displayName": "Queen Bee Swarm",
+  "description": "A VS Code chat extension and packaging shell for the Queen Bee Swarm Copilot Agent assets.",
+  "version": "1.0.0",
+  "publisher": "mianmian",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mianmianlingqi/queen-bee-swarm.git"
+  },
+  "homepage": "https://github.com/mianmianlingqi/queen-bee-swarm",
+  "bugs": {
+    "url": "https://github.com/mianmianlingqi/queen-bee-swarm/issues"
+  },
+  "engines": {
+    "vscode": "^1.98.0"
+  },
+  "categories": [
+    "Other",
+    "Chat"
+  ],
+  "keywords": [
+    "copilot",
+    "agent",
+    "plugin",
+    "swarm",
+    "queen-bee"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "queen-bee-swarm.queen-bee",
+        "name": "queen-bee",
+        "fullName": "Queen Bee",
+        "description": "Ask about the swarm extension, agent assets, release readiness, or Snake",
+        "isSticky": true,
+        "commands": [
+          {
+            "name": "overview",
+            "description": "Summarize the extension and its public capabilities"
+          },
+          {
+            "name": "agents",
+            "description": "Inspect the Queen Bee and worker agent assets"
+          },
+          {
+            "name": "snake",
+            "description": "Explain or launch the built-in Snake webview"
+          },
+          {
+            "name": "release",
+            "description": "Review release metadata and publishing readiness"
+          }
+        ],
+        "disambiguation": [
+          {
+            "category": "swarm_extension",
+            "description": "The user wants help understanding or improving the Queen Bee Swarm VS Code extension, including its chat entrypoint, packaged agents, commands, release metadata, or built-in Snake webview.",
+            "examples": [
+              "Explain how the Queen Bee extension is structured",
+              "What is still missing before this swarm extension can be published",
+              "Review the agent assets and tell me whether only the queen is visible",
+              "Open the Snake feature and explain its implementation"
+            ]
+          }
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "queenBeeSwarm.showOverview",
+        "title": "Queen Bee Swarm: Show Overview",
+        "category": "Queen Bee Swarm"
+      },
+      {
+        "command": "queenBeeSwarm.openReadme",
+        "title": "Queen Bee Swarm: Open README",
+        "category": "Queen Bee Swarm"
+      },
+      {
+        "command": "queenBeeSwarm.revealAgentsFolder",
+        "title": "Queen Bee Swarm: Reveal Agents Folder",
+        "category": "Queen Bee Swarm"
+      },
+      {
+        "command": "queenBeeSwarm.playSnake",
+        "title": "Queen Bee Swarm: Play Snake",
+        "category": "Queen Bee Swarm"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile",
+    "package": "vsce package",
+    "test": "node --test tests/*.test.js"
+  },
+  "files": [
+    "dist/**",
+    "media/**",
+    "agents/**",
+    ".github/plugin/plugin.json",
+    "plugin.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "@types/vscode": "^1.98.0",
+    "@vscode/vsce": "^3.6.2",
+    "typescript": "^5.8.2"
+  },
+  "activationEvents": [
+    "onChatParticipant:queen-bee-swarm.queen-bee"
+  ]
 }

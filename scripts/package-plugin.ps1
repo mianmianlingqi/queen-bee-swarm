@@ -22,7 +22,9 @@ Copy-Item -Path (Join-Path $root 'plugin.json') -Destination (Join-Path $staging
 Copy-Item -Path (Join-Path $root 'README.md') -Destination (Join-Path $stagingDir 'README.md') -Force
 Copy-Item -Path (Join-Path $root 'CHANGELOG.md') -Destination (Join-Path $stagingDir 'CHANGELOG.md') -Force
 Copy-Item -Path (Join-Path $root 'LICENSE') -Destination (Join-Path $stagingDir 'LICENSE') -Force
-Copy-Item -Path (Join-Path $root '.github\plugin\plugin.json') -Destination (Join-Path $stagingDir '.github\plugin\plugin.json') -Force
+# 镜像清单始终与主清单保持一致，避免发布产物仍引用旧配置。
+Copy-Item -Path (Join-Path $root 'plugin.json') -Destination (Join-Path $root '.github\plugin\plugin.json') -Force
+Copy-Item -Path (Join-Path $root 'plugin.json') -Destination (Join-Path $stagingDir '.github\plugin\plugin.json') -Force
 Copy-Item -Path (Join-Path $root 'agents\*') -Destination (Join-Path $stagingDir 'agents') -Recurse -Force
 
 if (Test-Path $tempZipPath) {

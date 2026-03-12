@@ -1,24 +1,78 @@
 {
-  "name": "queen-bee-swarm",
+  "$schema": "https://raw.githubusercontent.com/microsoft/vscode-copilot-extension/main/agent-plugin.schema.json",
+  "id": "queen-bee-swarm",
+  "name": "Queen Bee Swarm",
   "description": "An Agent Plugin package with one visible Queen Bee orchestrator, sixteen hidden worker agents, and an optional VS Code extension compatibility entrypoint.",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "publisher": "mianmian",
   "agents": [
-    "./agents/queen-bee.agent.md",
-    "./agents/worker-01.agent.md",
-    "./agents/worker-02.agent.md",
-    "./agents/worker-03.agent.md",
-    "./agents/worker-04.agent.md",
-    "./agents/worker-05.agent.md",
-    "./agents/worker-06.agent.md",
-    "./agents/worker-07.agent.md",
-    "./agents/worker-08.agent.md",
-    "./agents/worker-09.agent.md",
-    "./agents/worker-10.agent.md",
-    "./agents/worker-11.agent.md",
-    "./agents/worker-12.agent.md",
-    "./agents/worker-13.agent.md",
-    "./agents/worker-14.agent.md",
-    "./agents/worker-15.agent.md",
-    "./agents/worker-16.agent.md"
+    {
+      "id": "queen-bee",
+      "path": "./agents/queen-bee.agent.md"
+    },
+    {
+      "id": "worker-01",
+      "path": "./agents/worker-01.agent.md"
+    },
+    {
+      "id": "worker-02",
+      "path": "./agents/worker-02.agent.md"
+    },
+    {
+      "id": "worker-03",
+      "path": "./agents/worker-03.agent.md"
+    },
+    {
+      "id": "worker-04",
+      "path": "./agents/worker-04.agent.md"
+    },
+    {
+      "id": "worker-05",
+      "path": "./agents/worker-05.agent.md"
+    },
+    {
+      "id": "worker-06",
+      "path": "./agents/worker-06.agent.md"
+    },
+    {
+      "id": "worker-07",
+      "path": "./agents/worker-07.agent.md"
+    },
+    {
+      "id": "worker-08",
+      "path": "./agents/worker-08.agent.md"
+    },
+    {
+      "id": "worker-09",
+      "path": "./agents/worker-09.agent.md"
+    },
+    {
+      "id": "worker-10",
+      "path": "./agents/worker-10.agent.md"
+    },
+    {
+      "id": "worker-11",
+      "path": "./agents/worker-11.agent.md"
+    },
+    {
+      "id": "worker-12",
+      "path": "./agents/worker-12.agent.md"
+    },
+    {
+      "id": "worker-13",
+      "path": "./agents/worker-13.agent.md"
+    },
+    {
+      "id": "worker-14",
+      "path": "./agents/worker-14.agent.md"
+    },
+    {
+      "id": "worker-15",
+      "path": "./agents/worker-15.agent.md"
+    },
+    {
+      "id": "worker-16",
+      "path": "./agents/worker-16.agent.md"
+    }
   ]
 }

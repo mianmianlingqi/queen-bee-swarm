@@ -34,7 +34,7 @@
         "id": "queen-bee-swarm.queen-bee",
         "name": "queen-bee",
         "fullName": "Queen Bee",
-        "description": "Ask about the swarm extension, agent assets, release readiness, or Snake",
+        "description": "Ask about the swarm extension, agent assets, or release readiness",
         "isSticky": true,
         "commands": [
           {
@@ -46,10 +46,6 @@
             "description": "Inspect the Queen Bee and worker agent assets"
           },
           {
-            "name": "snake",
-            "description": "Explain or launch the built-in Snake webview"
-          },
-          {
             "name": "release",
             "description": "Review release metadata and publishing readiness"
           }
@@ -57,12 +53,11 @@
         "disambiguation": [
           {
             "category": "swarm_extension",
-            "description": "The user wants help understanding or improving the Queen Bee Swarm VS Code extension, including its chat entrypoint, packaged agents, commands, release metadata, or built-in Snake webview.",
+            "description": "The user wants help understanding or improving the Queen Bee Swarm VS Code extension, including its chat entrypoint, packaged agents, commands, or release metadata.",
             "examples": [
               "Explain how the Queen Bee extension is structured",
               "What is still missing before this swarm extension can be published",
-              "Review the agent assets and tell me whether only the queen is visible",
-              "Open the Snake feature and explain its implementation"
+              "Review the agent assets and tell me whether only the queen is visible"
             ]
           }
         ]
@@ -93,11 +88,6 @@
         "command": "queenBeeSwarm.revealAgentsFolder",
         "title": "Queen Bee Swarm: Reveal Agents Folder",
         "category": "Queen Bee Swarm"
-      },
-      {
-        "command": "queenBeeSwarm.playSnake",
-        "title": "Queen Bee Swarm: Play Snake",
-        "category": "Queen Bee Swarm"
       }
     ]
   },
@@ -112,7 +102,6 @@
   },
   "files": [
     "dist/**",
-    "media/**",
     "agents/**",
     ".github/plugin/plugin.json",
     "plugin.json",

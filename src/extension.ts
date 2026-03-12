@@ -1,6 +1,5 @@
 ﻿import * as vscode from 'vscode';
 import { getQueenBeeMention, registerQueenBeeParticipant } from './queenBeeParticipant';
-import { showSnakeWebview } from './snakeWebview';
 
 const EXTENSION_OUTPUT_CHANNEL = 'Queen Bee Swarm';
 
@@ -23,12 +22,11 @@ export function activate(context: vscode.ExtensionContext): void {
     outputChannel.appendLine('Running command: queenBeeSwarm.showOverview');
 
     const action = await vscode.window.showInformationMessage(
-      `Queen Bee Swarm is ready. You can configure the custom Queen Bee agent, use ${getQueenBeeMention()} in chat, open the README, reveal the agents folder, or play Snake.`,
+      `Queen Bee Swarm is ready. You can configure the custom Queen Bee agent, use ${getQueenBeeMention()} in chat, open the README, or reveal the agents folder.`,
       'Open Queen Bee Agent File',
       'Ask Queen Bee',
       'Open README',
-      'Reveal agents folder',
-      'Play Snake'
+      'Reveal agents folder'
     );
 
     if (action === 'Open Queen Bee Agent File') {
@@ -50,20 +48,11 @@ export function activate(context: vscode.ExtensionContext): void {
       await revealAgentsFolder(context, outputChannel);
       return;
     }
-
-    if (action === 'Play Snake') {
-      showSnakeWebview(context);
-    }
   });
 
   const openReadmeCommand = vscode.commands.registerCommand('queenBeeSwarm.openReadme', async () => {
     outputChannel.appendLine('Running command: queenBeeSwarm.openReadme');
     await openReadme(context, outputChannel);
-  });
-
-  const playSnakeCommand = vscode.commands.registerCommand('queenBeeSwarm.playSnake', async () => {
-    outputChannel.appendLine('Running command: queenBeeSwarm.playSnake');
-    showSnakeWebview(context);
   });
 
   const revealAgentsFolderCommand = vscode.commands.registerCommand('queenBeeSwarm.revealAgentsFolder', async () => {
@@ -77,8 +66,7 @@ export function activate(context: vscode.ExtensionContext): void {
     openQueenBeeAgentFileCommand,
     showOverviewCommand,
     openReadmeCommand,
-    revealAgentsFolderCommand,
-    playSnakeCommand
+    revealAgentsFolderCommand
   );
 }
 

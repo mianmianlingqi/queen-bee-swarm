@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 const QUEEN_BEE_PARTICIPANT_ID = 'queen-bee-swarm.queen-bee';
 const QUEEN_BEE_NAME = 'queen-bee';
 
-type QueenBeeIntent = 'overview' | 'agents' | 'snake' | 'release' | 'general';
+type QueenBeeIntent = 'overview' | 'agents' | 'release' | 'general';
 
 interface QueenBeeResponseMetadata {
   intent: QueenBeeIntent;
@@ -31,11 +31,6 @@ export function registerQueenBeeParticipant(
             { prompt: '总结蜂后和工蜂的职责分工', label: '解释角色分工' },
             { prompt: '如何验证只有蜂后对用户可见', label: '验证可见性' },
           ];
-        case 'snake':
-          return [
-            { prompt: '打开 Snake 并告诉我怎么玩', label: '继续玩 Snake' },
-            { prompt: '这个 Webview 还有哪些可改进点', label: '审查 Snake 实现' },
-          ];
         case 'release':
           return [
             { prompt: '列出发布前还缺什么', label: '发布缺口' },
@@ -45,7 +40,6 @@ export function registerQueenBeeParticipant(
           return [
             { prompt: '概览这个扩展的能力', label: '扩展概览' },
             { prompt: '列出蜂群里的所有 agent 文件', label: '查看 agent 文件' },
-            { prompt: '打开 Snake', label: '玩 Snake' },
           ];
       }
     },
@@ -82,8 +76,6 @@ function createRequestHandler(
         return handleOverviewRequest(stream);
       case 'agents':
         return handleAgentsRequest(context, stream, token);
-      case 'snake':
-        return handleSnakeRequest(stream);
       case 'release':
         return handleReleaseRequest(stream);
       default:
@@ -95,8 +87,6 @@ function createRequestHandler(
         return handleOverviewRequest(stream);
       case 'agents':
         return handleAgentsRequest(context, stream, token);
-      case 'snake':
-        return handleSnakeRequest(stream);
       case 'release':
         return handleReleaseRequest(stream);
       default:
@@ -114,10 +104,6 @@ function detectIntent(request: vscode.ChatRequest): QueenBeeIntent {
 
   if (/(agent|蜂后|工蜂|worker|queen|角色|分工|隐藏)/.test(prompt)) {
     return 'agents';
-  }
-
-  if (/(snake|贪吃蛇|游戏|webview|pause|restart)/.test(prompt)) {
-    return 'snake';
   }
 
   if (/(发布|publish|vsix|marketplace|上架|元数据|publisher|版本)/.test(prompt)) {
@@ -138,14 +124,13 @@ function handleOverviewRequest(stream: vscode.ChatResponseStream): vscode.ChatRe
     '',
     '- 这是一个同时包含 VS Code 扩展层和 Copilot Agent Plugin 资产层的仓库。',
     '- 对用户公开的入口应该只有一个 Queen Bee；16 个 worker 保持隐藏。',
-    '- 当前扩展已经提供命令入口、README 预览、agents 目录定位和内置 Snake。',
+    '- 当前扩展已经提供命令入口、README 预览、agents 目录定位。',
     '- 现在还新增了一个真正可用的聊天入口，你可以直接在聊天里用 @queen-bee。',
     '',
     '如果你要继续完善这个项目，优先级通常是：聊天入口稳定化、清单与发布元数据、再到 worker 资产的进一步桥接。',
   ].join('\n'));
   stream.button({ command: 'queenBeeSwarm.openReadme', title: 'Open README' });
   stream.button({ command: 'queenBeeSwarm.revealAgentsFolder', title: 'Reveal Agents Folder' });
-  stream.button({ command: 'queenBeeSwarm.playSnake', title: 'Play Snake' });
 
   return { metadata: { intent: 'overview' } satisfies QueenBeeResponseMetadata };
 }
@@ -187,21 +172,6 @@ async function handleAgentsRequest(
   return { metadata: { intent: 'agents' } satisfies QueenBeeResponseMetadata };
 }
 
-function handleSnakeRequest(stream: vscode.ChatResponseStream): vscode.ChatResult {
-  stream.progress('准备 Snake 功能说明');
-  stream.markdown([
-    '## Snake',
-    '',
-    '- 扩展内置了一个 Webview 版 Snake。',
-    '- 键盘支持方向键和 WASD。',
-    '- 空格或 P 暂停，R 重开。',
-    '- 这个功能现在作为正式附加能力保留，不再只是隐藏彩蛋。',
-  ].join('\n'));
-  stream.button({ command: 'queenBeeSwarm.playSnake', title: 'Open Snake' });
-
-  return { metadata: { intent: 'snake' } satisfies QueenBeeResponseMetadata };
-}
-
 function handleReleaseRequest(stream: vscode.ChatResponseStream): vscode.ChatResult {
   stream.progress('整理发布与元数据检查项');
   stream.markdown([
@@ -209,8 +179,8 @@ function handleReleaseRequest(stream: vscode.ChatResponseStream): vscode.ChatRes
     '',
     '- 确认 package.json 的 publisher、repository、homepage 和 bugs 不再是占位值。',
     '- 让 VS Code 扩展清单和 plugin 资产清单的版本、描述保持一致。',
-    '- 编译产物 dist/extension.js、agents/ 和 media/ 都要被包含进 VSIX。',
-    '- 上架前至少在开发宿主里验证 @queen-bee、README、agents 目录和 Snake。',
+    '- 编译产物 dist/extension.js 和 agents/ 都要被包含进 VSIX。',
+    '- 上架前至少在开发宿主里验证 @queen-bee、README 和 agents 目录。',
   ].join('\n'));
   stream.button({ command: 'queenBeeSwarm.openReadme', title: 'Review README' });
 

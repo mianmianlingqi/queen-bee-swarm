@@ -1,6 +1,6 @@
 {
   "name": "queen-bee-swarm",
-  "description": "A Queen Bee swarm package with one visible orchestrator, sixteen hidden worker agents, and a matching VS Code chat extension entrypoint.",
+  "description": "An Agent Plugin package with one visible Queen Bee orchestrator, sixteen hidden worker agents, and an optional VS Code extension compatibility entrypoint.",
   "version": "1.0.0",
   "agents": [
     "./agents/queen-bee.agent.md",

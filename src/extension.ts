@@ -9,16 +9,32 @@ export function activate(context: vscode.ExtensionContext): void {
   outputChannel.appendLine('Queen Bee Swarm activated.');
   registerQueenBeeParticipant(context, outputChannel);
 
+  const askQueenBeeCommand = vscode.commands.registerCommand('queenBeeSwarm.askQueenBee', async () => {
+    outputChannel.appendLine('Running command: queenBeeSwarm.askQueenBee');
+    await openQueenBeeChat(outputChannel);
+  });
+
+  const openQueenBeeAgentFileCommand = vscode.commands.registerCommand('queenBeeSwarm.openQueenBeeAgentFile', async () => {
+    outputChannel.appendLine('Running command: queenBeeSwarm.openQueenBeeAgentFile');
+    await openQueenBeeAgentFile(context, outputChannel);
+  });
+
   const showOverviewCommand = vscode.commands.registerCommand('queenBeeSwarm.showOverview', async () => {
     outputChannel.appendLine('Running command: queenBeeSwarm.showOverview');
 
     const action = await vscode.window.showInformationMessage(
-      `Queen Bee Swarm is ready. Use ${getQueenBeeMention()} in chat, open the README, reveal the agents folder, or play Snake.`,
+      `Queen Bee Swarm is ready. You can configure the custom Queen Bee agent, use ${getQueenBeeMention()} in chat, open the README, reveal the agents folder, or play Snake.`,
+      'Open Queen Bee Agent File',
       'Ask Queen Bee',
       'Open README',
       'Reveal agents folder',
       'Play Snake'
     );
+
+    if (action === 'Open Queen Bee Agent File') {
+      await openQueenBeeAgentFile(context, outputChannel);
+      return;
+    }
 
     if (action === 'Ask Queen Bee') {
       await openQueenBeeChat(outputChannel);
@@ -57,6 +73,8 @@ export function activate(context: vscode.ExtensionContext): void {
 
   context.subscriptions.push(
     outputChannel,
+    askQueenBeeCommand,
+    openQueenBeeAgentFileCommand,
     showOverviewCommand,
     openReadmeCommand,
     revealAgentsFolderCommand,
@@ -87,6 +105,21 @@ async function revealAgentsFolder(context: vscode.ExtensionContext, outputChanne
   } catch (error) {
     outputChannel.appendLine(`Failed to reveal agents folder: ${formatError(error)}`);
     void vscode.window.showErrorMessage('Unable to reveal Queen Bee Swarm agents folder.');
+  }
+}
+
+async function openQueenBeeAgentFile(
+  context: vscode.ExtensionContext,
+  outputChannel: vscode.OutputChannel
+): Promise<void> {
+  const queenBeeAgentUri = vscode.Uri.joinPath(context.extensionUri, 'agents', 'queen-bee.agent.md');
+
+  try {
+    const document = await vscode.workspace.openTextDocument(queenBeeAgentUri);
+    await vscode.window.showTextDocument(document, { preview: false });
+  } catch (error) {
+    outputChannel.appendLine(`Failed to open Queen Bee agent file: ${formatError(error)}`);
+    void vscode.window.showErrorMessage('Unable to open Queen Bee agent file.');
   }
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "queen-bee-swarm",
   "displayName": "Queen Bee Swarm",
-  "description": "A VS Code chat extension and packaging shell for the Queen Bee Swarm Copilot Agent assets.",
+  "description": "An Agent Plugin package for Queen Bee Swarm, with a VS Code extension as a compatibility entrypoint.",
   "version": "1.0.0",
   "publisher": "mianmian",
   "license": "MIT",
@@ -70,6 +70,16 @@
     ],
     "commands": [
       {
+        "command": "queenBeeSwarm.askQueenBee",
+        "title": "Queen Bee Swarm: Ask Queen Bee",
+        "category": "Queen Bee Swarm"
+      },
+      {
+        "command": "queenBeeSwarm.openQueenBeeAgentFile",
+        "title": "Queen Bee Swarm: Open Queen Bee Agent File",
+        "category": "Queen Bee Swarm"
+      },
+      {
         "command": "queenBeeSwarm.showOverview",
         "title": "Queen Bee Swarm: Show Overview",
         "category": "Queen Bee Swarm"
@@ -95,7 +105,9 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "vscode:prepublish": "npm run compile",
-    "package": "vsce package",
+    "package": "npm run package:plugin",
+    "package:plugin": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/package-plugin.ps1",
+    "package:vsix": "vsce package",
     "test": "node --test tests/*.test.js"
   },
   "files": [

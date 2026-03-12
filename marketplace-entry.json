@@ -1,0 +1,26 @@
+{
+  "name": "queen-bee-swarm",
+  "description": "An Agent Plugin package with one visible Queen Bee orchestrator, sixteen hidden worker agents, and an optional VS Code extension compatibility entrypoint.",
+  "version": "1.0.0",
+  "source": {
+    "source": "github",
+    "repo": "mianmianlingqi/queen-bee-swarm",
+    "path": "."
+  },
+  "homepage": "https://github.com/mianmianlingqi/queen-bee-swarm",
+  "repository": "https://github.com/mianmianlingqi/queen-bee-swarm",
+  "license": "MIT",
+  "author": {
+    "name": "mianmianlingqi",
+    "url": "https://github.com/mianmianlingqi"
+  },
+  "keywords": [
+    "copilot-plugin",
+    "queen-bee",
+    "agent-plugin",
+    "subagents",
+    "agent-orchestration",
+    "parallel-workflow",
+    "release-engineering"
+  ]
+}

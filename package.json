@@ -2,7 +2,7 @@
   "name": "queen-bee-swarm",
   "displayName": "Queen Bee Swarm",
   "description": "An Agent Plugin package for Queen Bee Swarm, with a VS Code extension as a compatibility entrypoint.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "mianmian",
   "license": "MIT",
   "repository": {
